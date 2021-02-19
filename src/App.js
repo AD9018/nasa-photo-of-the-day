@@ -1,14 +1,21 @@
 import React from "react";
 import "./App.css";
+import Image from "./Components/Image.js";
+import styled from "styled-components";
+
+const AppStyle = styled.div`
+  text-align: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+`;
 
 function App() {
   return (
-    <div className="App">
-      <p>
-        Read through the instructions in the README.md file to build your NASA
-        app! Have fun <span role="img" aria-label='go!'>🚀</span>!
-      </p>
-    </div>
+    <AppStyle>
+      <Image />
+    </AppStyle>
   );
 }
 

@@ -1,7 +1,52 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import "./Image.css";
+import styled, { keyframes } from "styled-components";
 
+const opaque = keyframes`
+100%{
+  opacity:0;
+}
+
+`;
+
+const StyledImage = styled.div`
+  img {
+    width: 45%;
+    border-radius: 10%;
+    border: double 4px #a9def9;
+    &:hover {
+      animation: ${opaque} 3.5s step-start;
+    }
+  }
+
+  h1 {
+    color: #a9def9;
+    font-size: 4em;
+    font-family: "Courier New", Courier, monospace;
+  }
+`;
+
+const StyledP1 = styled.p`
+  color: #a9def9;
+  font-weight: bold;
+  font-family: "Courier New", Courier, monospace;
+`;
+
+const StyledP2 = styled.p`
+  color: #a9def9;
+  max-width: 60%;
+  margin: 0 auto;
+  padding-top: 1em;
+  font-weight: bold;
+  font-family: "Courier New", Courier, monospace;
+`;
+
+const StyledP3 = styled.p`
+  color: #a9def9;
+  font-weight: bold;
+  font-family: "Courier New", Courier, monospace;
+`;
 function Image() {
   const [nasaData, setNasaData] = useState();
 
@@ -20,10 +65,10 @@ function Image() {
   if (!nasaData) return <h1> Loading ...</h1>;
 
   return (
-    <div className="Image">
+    <StyledImage>
       <h1>{nasaData.title}</h1>
       {nasaData.media_type === "image" ? (
-        <img alt="NASA" className="img" src={nasaData.hdurl} />
+        <img alt="NASA" src={nasaData.hdurl} />
       ) : (
         <iframe
           src={nasaData.url}
@@ -33,13 +78,14 @@ function Image() {
         />
       )}
       <div>
-        <p>Date: {nasaData.date}</p>
-        <p>Copyright: {nasaData.copyright}</p>
-        <p>{nasaData.explanation}</p>
+        <StyledP1>Date: {nasaData.date}</StyledP1>
+        <input input type="date" />
+
+        <StyledP2>{nasaData.explanation}</StyledP2>
       </div>
-      {/* <input type="date"/> */}{" "}
+      <StyledP3>Copyright: {nasaData.copyright} </StyledP3>{" "}
       {/*//! MAKE DYNAMIC TO CHOOSE WHATEVER DATE IS CHOSEN FROM INPUT*/}
-    </div>
+    </StyledImage>
   );
 }
 
